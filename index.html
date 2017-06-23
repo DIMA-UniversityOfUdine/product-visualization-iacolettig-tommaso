@@ -1,0 +1,693 @@
+<!doctype html>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Night armchair - Project 2</title>
+		<meta name="description" content="Three.js Project - Interactive 3D Graphics (Uniud) - 2017">
+		<meta name="author" content="Tommaso Iacolettig">
+
+		<!-- CSS -->
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="bootstrap/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+		<link href="bootstrap/custom/dashboard.css" rel="stylesheet">
+
+		<!-- JS -->
+		<script src="lib/three.min.js"></script>
+		<script src="lib/stats.min.js"></script>
+		<script src="lib/OrbitControls.js"></script>
+		<script src='lib/dat.gui.min.js'></script>
+		<script src='lib/OBJLoader.js'></script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+	</head>
+
+	<body>
+		<!-- NAVBAR -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		     	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+		        	<span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+		      	</button>
+		      	<a class="navbar-brand" href="#">ACME</a>
+		    </div>
+
+		    <div id="navbar" class="navbar-collapse collapse">
+		      	<ul class="nav navbar-nav navbar-right">
+			        <li><a href="#"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Products</a></li>
+			        <li><a href="#" onclick="updateFavourite(this)"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> Favourite</a></li>
+			        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart</a></li>
+		      	</ul>
+		      	<form class="navbar-form navbar-right">
+		        	<input type="text" class="form-control" placeholder="Search...">
+		      	</form>
+		    </div>
+		  </div>
+		</nav>
+
+		<div class="container-fluid">
+		  	<div class="row">
+
+		  		<!-- SIDEBAR -->
+		    	<div id="sidebar-container" class="col-xs-4 col-md-3 sidebar">
+		    		<h3>ACME - Night armchair</h3>
+		      		<h4>Il posto giusto per acquistare sedie, poltrone e divani per il tuo locale!</h4>
+
+		      		<hr>
+
+		      		<p>Modifica a piacimento l'oggetto che stai visualizzando in modo tale che si adatti al tuo stile. Una volta che avrai terminato con le modifiche, procedi pure con l'acquisto!</p>
+
+		      		<hr>
+
+		      		<label for="mat1">Cuscini</label>
+		      		<select id="mat1" class="form-control margin-bottom-25" onchange="updateMaterial(this.value, 0)">
+						<option value="fabric/carpet/carpet" selected>Fabric - Carpet</option>
+						<option value="fabric/cloth/cloth">Fabric - Cloth</option>
+						<option value="fabric/cotton/cotton">Fabric - Cotton</option>
+						<option value="fabric/crocodile/crocodile">Fabric - Crocodile</option>
+						<option value="fabric/hex/hex">Fabric - Hex</option>
+						<option value="fabric/wool/wool">Fabric - Wool</option>
+						<option value="plastic/blueMatte/blueMatte">Plastic - Blue Matte</option>
+						<option value="plastic/redMatte/redMatte">Plastic - Red Matte</option>
+		      		</select>
+
+		      		<label for="mat2">Cover</label>
+		      		<select id="mat2" class="form-control margin-bottom-25" onchange="updateMaterial(this.value, 1)">
+						<option value="manmade/blueFlakes/blueFlakes">Manmade - Blue Flakes</option>
+						<option value="manmade/carbon/carbon">Manmade - Carbon</option>
+						<option value="manmade/greenFlakes/greenFlakes">Manmade - Green Flakes</option>
+						<option value="manmade/redFlakes/redFlakes">Manmade - Red Flakes</option>
+						<option value="metal/aluminium/aluminium">Metal - Aluminium</option>
+						<option value="metal/iron/iron">Metal - Iron</option>
+						<option value="metal/platinum/platinum">Metal - Platinum</option>
+						<option value="metal/steel/steel">Metal - Steel</option>
+						<option value="plastic/blueMatte/blueMatte">Plastic - Blue Matte</option>
+						<option value="plastic/redMatte/redMatte">Plastic - Red Matte</option>
+						<option value="rock/lava/lava">Rock - Lava</option>
+						<option value="rock/malachite/malachite">Rock - Malachite</option>
+						<option value="rock/marble/marble">Rock - Marble</option>
+						<option value="wood/organic/organic">Wood - Organic</option>
+						<option value="wood/palm/palm" selected>Wood - Palm</option>
+						<option value="wood/plank/plank">Wood - Plank</option>
+						<option value="wood/rough/rough">Wood - Rough</option>
+						<option value="wood/walnut/walnut">Wood - Walnut</option>
+		      		</select>
+
+		      		<label for="mat3">Base</label>
+		      		<select id="mat3" class="form-control" onchange="updateMaterial(this.value, 2)">
+						<option value="metal/aluminium/aluminium">Metal - Aluminium</option>
+						<option value="metal/iron/iron">Metal - Iron</option>
+						<option value="metal/platinum/platinum" selected>Metal - Platinum</option>
+						<option value="metal/steel/steel">Metal - Steel</option>
+						<option value="plastic/blueMatte/blueMatte">Plastic - Blue Matte</option>
+						<option value="plastic/redMatte/redMatte">Plastic - Red Matte</option>
+						<option value="rock/lava/lava">Rock - Lava</option>
+						<option value="rock/malachite/malachite">Rock - Malachite</option>
+						<option value="rock/marble/marble">Rock - Marble</option>
+						<option value="wood/organic/organic">Wood - Organic</option>
+						<option value="wood/palm/palm">Wood - Palm</option>
+						<option value="wood/plank/plank">Wood - Plank</option>
+						<option value="wood/rough/rough">Wood - Rough</option>
+						<option value="wood/walnut/walnut">Wood - Walnut</option>
+		      		</select>
+
+		      		<hr>
+
+		      		<button type="button" class="btn btn-primary btn-lg btn-block">Acquista</button>
+		    	</div>
+
+		    	<!-- MAIN -->
+		    	<div id="canvas-container" class="col-xs-8 col-xs-offset-4 col-md-9 col-md-offset-3 main">
+					<div id="volume-container" onclick="updateVolume(this)">
+						<span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+						<span class="sr-only">Change to mute</span>
+					</div>
+		    	</div>
+		  	</div>
+		</div>
+
+		<!-- obj vertex shader -->
+		<script type="text/x-glsl" id="obj_vertex">
+			varying vec3 vNormal;
+			varying vec3 vPosition;
+			varying vec3 wPosition;
+			varying vec2 uVv;
+
+			void main() {
+				vec4 vPos = modelViewMatrix * vec4(position, 1.0);
+				vPosition = vPos.xyz;
+				wPosition = (modelMatrix * vec4(position, 1.0)).xyz;
+
+				vNormal = normalMatrix * normal;
+				uVv = uv;
+
+				gl_Position = projectionMatrix * vPos;
+			}
+		</script>
+
+		<!-- obj fragment shader -->
+		<script type="text/x-glsl" id="obj_fragment">
+			varying vec3 vNormal;
+			varying vec3 vPosition;
+			varying vec2 uVv;
+			varying vec3 wPosition;
+
+			uniform vec3 mainLightPosition;
+			uniform vec3 mainclight;
+
+			uniform vec3 baseLightPositions[BASELIGHTNUMBER];
+			uniform vec3 baseclights[BASELIGHTNUMBER];
+
+			uniform vec3 ambientLight;
+
+			uniform sampler2D diffuseMap;
+			uniform sampler2D specularMap;
+			uniform sampler2D roughnessMap;
+			uniform sampler2D normalMap;
+			uniform sampler2D aoMap;
+			uniform samplerCube envMap;
+
+			const float PI = 3.14159;
+
+			vec3 cdiff;
+			vec3 cspec;
+			float roughness;
+
+			vec3 FSchlick(float lDoth) {
+				return (cspec + (vec3(1.0) - cspec) * pow(1.0 - lDoth, 5.0));
+			}
+
+			float DGGX(float nDoth, float alpha) {
+				float alpha2 = max(alpha * alpha, 0.05);
+				float d = nDoth * nDoth * (alpha2 - 1.0) + 1.0;
+				return (alpha2 / (PI * d * d));
+			}
+
+			float G1(float dotProduct, float k) {
+				return (dotProduct / (dotProduct * (1.0 - k) + k));
+			}
+
+			float GSmith(float nDotv, float nDotl) {
+				float k = roughness * roughness;
+				return G1(nDotl, k) * G1(nDotv, k);
+			}
+
+			#extension GL_OES_standard_derivatives : enable
+
+			vec3 perturbNormal2Arb(vec3 eye_pos, vec3 surf_norm) {
+				vec3 q0 = dFdx(eye_pos.xyz);
+				vec3 q1 = dFdy(eye_pos.xyz);
+				vec2 st0 = dFdx(uVv.st);
+				vec2 st1 = dFdy(uVv.st);
+
+				vec3 S = normalize(q0 * st1.t - q1 * st0.t);
+				vec3 T = normalize(-q0 * st1.s + q1 * st0.s);
+				vec3 N = surf_norm;
+
+				vec3 mapN = normalize(texture2D(normalMap, uVv).xyz * 2.0 - 1.0);
+				mat3 tsn = mat3(S, T, N);
+				return normalize(tsn * mapN);
+			}
+
+			vec3 inverseTransformDirection(in vec3 dir, in mat4 matrix) {
+				return normalize((vec4(dir, 0.0) * matrix).xyz);
+			}
+
+			vec3 directRadiance(vec3 plp, vec3 cl) {
+				vec4 lPosition = viewMatrix * vec4(plp, 1.0);
+				vec3 l = normalize(lPosition.xyz - vPosition.xyz);
+				vec3 n = perturbNormal2Arb(vPosition, normalize(vNormal));
+				vec3 v = normalize(-vPosition);
+				vec3 h = normalize(v + l);
+				vec3 worldN = inverseTransformDirection(n, viewMatrix);
+				vec3 worldV = cameraPosition - wPosition;
+				vec3 r = normalize(reflect(-worldV, worldN));
+
+				float nDotl = max(dot(n, l), 0.000001);
+				float lDoth = max(dot(l, h), 0.000001);
+				float nDoth = max(dot(n, h), 0.000001);
+				float vDoth = max(dot(v, h), 0.000001);
+				float nDotv = max(dot(n, v), 0.000001);
+
+				cdiff = texture2D(diffuseMap, uVv).rgb;
+				cdiff = pow(cdiff, vec3(2.2));
+				cspec = texture2D(specularMap, uVv).rgb;
+				cspec = pow(cspec, vec3(2.2));
+				roughness = texture2D(roughnessMap, uVv).r;
+
+				vec3 fresnel = FSchlick(lDoth);
+				vec3 envLight = textureCube(envMap, vec3(-r.x, r.yz)).rgb;
+				envLight = pow(envLight, vec3(2.2));
+				vec3 BRDF = (vec3(1.0) - fresnel * envLight) * cdiff / PI + fresnel * envLight * GSmith(nDotv, nDotl) * DGGX(nDoth, roughness * roughness) / (4.0 * nDotl * nDotv);
+
+				return PI * cl * nDotl * BRDF;
+			}
+
+			void main() {
+				vec3 mainDirectRadiance = directRadiance(mainLightPosition, mainclight);
+
+				vec3 baseDirectRadiance = vec3(0.0);
+				for(int i = 0; i < BASELIGHTNUMBER; i++) {
+					baseDirectRadiance += directRadiance(baseLightPositions[i], baseclights[i]);
+				}
+
+				vec3 outRadiance = mainDirectRadiance + baseDirectRadiance + ambientLight * cdiff * texture2D(aoMap, uVv).xyz;
+
+				gl_FragColor = vec4(pow(outRadiance, vec3(1.0 / 2.2)), 1.0);
+			}
+		</script>
+
+		<!-- glow vertex shader -->
+		<script type="text/x-glsl" id="glow_vertex">
+			uniform vec3 viewVector;
+			uniform float c;
+			uniform float p;
+			varying float intensity;
+
+			void main() {
+			    vec3 vNormal = normalize(normalMatrix * normal);
+				vec3 vNormel = normalize(normalMatrix * viewVector);
+				intensity = pow(c - dot(vNormal, vNormel), p);
+				
+			    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+			}
+		</script>
+
+		<!-- glow fragment shader -->
+		<script type="text/x-glsl" id="glow_fragment">
+			uniform vec3 clight;
+			varying float intensity;
+
+			void main() {
+				vec3 glow = clight * intensity;
+			    gl_FragColor = vec4(glow, 1.0);
+			}
+		</script>
+
+		<script>
+			var renderer = new THREE.WebGLRenderer({ antialias: true });
+			var camera = new THREE.PerspectiveCamera(20, getWidth() / getHeight(), 1, 1000);
+			var controls = new THREE.OrbitControls(camera, renderer.domElement);
+			var scene = new THREE.Scene();
+			var stats = new Stats();
+
+			var favoutite = false;
+
+			// -- SOUND --
+			var mute = false;
+
+			// Create an AudioListener and add it to the camera
+			var audioListener = new THREE.AudioListener();
+			camera.add(audioListener);
+
+			// Create an Audio source
+			var sound = new THREE.Audio(audioListener);
+
+			// Load a sound and set it as the Audio object's buffer
+			var audioLoader = new THREE.AudioLoader();
+			audioLoader.load('sounds/lipstickKiss.mp3', function(buffer) {
+				sound.setBuffer(buffer);
+				sound.setLoop(true);
+				sound.setVolume(0.5);
+				sound.play();
+			});
+
+			// Create an AudioAnalyser, passing in the sound and desired fftSize
+			var fftSize = 32;
+			var analyser = new THREE.AudioAnalyser(sound, fftSize);
+
+
+			// -- TEXTURES --
+			var texturesPath = "textures/";
+
+			// Cubemap
+			var cubemapLoader = new THREE.CubeTextureLoader();
+			var cubemapFormat = ".png";
+
+			cubemapLoader.setPath(texturesPath + 'cubemap/');
+			var textureCube = cubemapLoader.load([
+				'px' + cubemapFormat, 'nx' + cubemapFormat,
+				'py' + cubemapFormat, 'ny' + cubemapFormat,
+				'pz' + cubemapFormat, 'nz' + cubemapFormat
+			]);
+
+			scene.background = textureCube;
+			
+			// Object textures
+			var materialPath = texturesPath + "materials/";
+			var materialTextureNames = ["_Diffuse", "_Specular", "_Roughness", "_Normal", "_Ambient_Occlusion"];
+			var materialFormat = ".png";
+			var initialMaterialNames = ["fabric/carpet/carpet", "wood/palm/palm", "metal/platinum/platinum"];
+
+			// There are 3 materials and each material has 5 textures
+			//   * 0 -> Pillows
+			//   * 1 -> Cover
+			//   * 2 -> Supports
+			var textures = [[], [], []];
+
+			for(var i = 0; i < textures.length; i++) {
+				for(var j = 0; j < materialTextureNames.length; j++) {
+					updateMaterial(initialMaterialNames[i], i);
+				}
+			}
+
+
+			// -- UNIFORMS --
+			var objUniforms = [];
+
+			for(var i = 0; i < textures.length; i++) {
+				var tmpUniforms = {
+					diffuseMap:			{ type: "t", value: textures[i][0] },
+					specularMap:		{ type: "t", value: textures[i][1] },
+					roughnessMap:		{ type: "t", value: textures[i][2] },
+					normalMap:			{ type: "t", value: textures[i][3] },
+					aoMap:				{ type: "t", value: textures[i][4] },
+					envMap:				{ type: "t", value: textureCube },
+
+					ambientLight:			{ type: "v3", value: new THREE.Vector3(0.05, 0.05, 0.05) },
+					mainLightPosition:		{ type: "v3", value: new THREE.Vector3() },
+					mainclight:				{ type: "v3", value: new THREE.Vector3() },
+					baseLightPositions:		{ type: "v3v", value: [] },
+					baseclights:			{ type: "v3v", value: [] }
+				}
+
+				objUniforms[i] = tmpUniforms;
+			}
+
+
+			// -- LIGHTS --
+			// Main light
+			var mainLight = new THREE.PointLight(0xffffff, 1, 100);
+			mainLight.position.set(0, 5, 0);
+
+			// Update main light position and color in objUniforms
+			for(var i = 0; i < objUniforms.length; i++) {
+				objUniforms[i].mainLightPosition.value = mainLight.position;
+				objUniforms[i].mainclight.value = mainLight.color;
+			}
+
+			// Base lights
+			var baseLightsNumber = fftSize / 4; // In this way it is possible to assign equally the sound values between the base lights (dividing by 4 -> 2 values for 1 light)
+			var baseLights = new Array(baseLightsNumber);
+			var baseLightsAngles = [new Array(baseLightsNumber), new Array(baseLightsNumber)]; // For the circular and vertical movements
+			var r = 3.5; // Distance from the center
+			var h = 0.4; // Vertical position (before displacement)
+
+			var lightsGeometry = new THREE.SphereGeometry(0.025, 16, 16);
+			var lightsMesh = new Array(baseLightsNumber);
+
+			var glowsMesh = new Array(baseLightsNumber);
+			glow_vs = document.getElementById("glow_vertex").textContent;
+			glow_fs = document.getElementById("glow_fragment").textContent;
+
+			for(var i = 0; i < baseLights.length; i++) {
+				// Light
+				baseLights[i] = new THREE.PointLight(randomColor(), 1, 100);
+				baseLightsAngles[0][i] = i * 2 * Math.PI / baseLights.length;
+				baseLightsAngles[1][i] = i * 4 * Math.PI / baseLights.length;
+				baseLights[i].position.set(Math.sin(baseLightsAngles[0][i]) * r, h + Math.sin(baseLightsAngles[1][i]) * h / 2, Math.cos(baseLightsAngles[0][i]) * r);
+
+				// Update base lights position and color in objUniforms
+				for(var j = 0; j < objUniforms.length; j++) {
+					objUniforms[j].baseLightPositions.value[i] = baseLights[i].position;
+					objUniforms[j].baseclights.value[i] = baseLights[i].color;
+				}
+
+				// Sphere
+				var lightMaterial = new THREE.MeshBasicMaterial({ color: baseLights[i].color });
+				lightsMesh[i] = new THREE.Mesh(lightsGeometry, lightMaterial);
+				lightsMesh[i].position.copy(baseLights[i].position);
+
+				// Glow
+				var glowUniforms = {
+					viewVector:	{ type: "v3", value: camera.position },
+					c:			{ type: "f", value: 0.2 },
+					p:			{ type: "f", value: 6.0 },
+					clight:		{ type: "v3", value: baseLights[i].color }
+				}
+
+				var glowMaterial = new THREE.ShaderMaterial({
+					uniforms: glowUniforms,
+					vertexShader: glow_vs,
+					fragmentShader: glow_fs,
+					side: THREE.BackSide,
+					blending: THREE.AdditiveBlending,
+					transparent: true
+				});
+
+				glowsMesh[i] = new THREE.Mesh(lightsGeometry.clone(), glowMaterial);
+				glowsMesh[i].scale.multiplyScalar(2);
+				glowsMesh[i].position.copy(baseLights[i].position);
+			}
+
+
+			// -- OBJECT --
+			obj_vs = document.getElementById("obj_vertex").textContent;
+			obj_fs = document.getElementById("obj_fragment").textContent;
+
+			// There are 3 unique shader materials
+			var allMaterials = [];
+
+			for(var i = 0; i < textures.length; i++) {
+				var tmpMaterial =  new THREE.ShaderMaterial({
+					uniforms: objUniforms[i],
+					vertexShader: obj_vs,
+					fragmentShader: "#define BASELIGHTNUMBER " + baseLights.length + "\n" + obj_fs // It is necessary to define the number of base lights in the fragment shader
+				});
+
+				allMaterials[i] = tmpMaterial;
+			}
+
+			// The object has 4 groups. The materials are organized according to the groups order. One material is used twice (the supports one)
+			var objMaterials = [allMaterials[2], allMaterials[0], allMaterials[1], allMaterials[2]];
+
+			var modelsPath = "models/";
+			var obj = new THREE.Group();
+			objLoader = new THREE.OBJLoader();
+
+			objLoader.load(modelsPath + "armchair.obj", function(group) {
+				for(var i = 0; i < group.children.length; i++) {
+					var geometry = group.children[i].geometry;
+					var mesh = new THREE.Mesh(geometry, objMaterials[i]);
+					mesh.scale.multiplyScalar(0.05);
+					obj.add(mesh);
+				}
+			});
+
+			// This mesh is used to cover an error in the model concerning one of the two supports. Try to remove the "obj.add(support);" line.
+			var supportGeometry = new THREE.CylinderGeometry(0.7, 0.7, 0.02, 32);
+			var support = new THREE.Mesh(supportGeometry, allMaterials[2]);
+			support.position.set(0, supportGeometry.parameters.height / 2, -1.1);
+			obj.add(support);
+
+			// Base
+			var baseGeometry = new THREE.CylinderGeometry(4, 4, 0.1, 64);
+			var baseMaterial = new THREE.MeshStandardMaterial({ color: 0x000000 });
+			var base = new THREE.Mesh(baseGeometry, baseMaterial);
+			base.position.set(0, -baseGeometry.parameters.height / 2, 0);
+
+
+			// -- FUNCTIONS --
+			function init() {
+				var canvasContainer = document.getElementById("canvas-container");
+
+				renderer.setClearColor(0xf0f0f0);
+				canvasContainer.appendChild(renderer.domElement);
+				resizeCanvas();
+
+				window.addEventListener('resize', resizeCanvas, false);
+
+				// Camera position
+				camera.position.set(10, 4, 12);
+
+				// Stats
+				stats.domElement.style.position = 'absolute';
+				stats.domElement.style.top = '0px';
+				canvasContainer.appendChild(stats.domElement);
+
+				// Orbit controls
+				controls.minDistance = 4;
+				controls.maxDistance = 20;
+				controls.maxPolarAngle = Math.PI / 2;
+				controls.enablePan = false;
+				controls.target = new THREE.Vector3(0, 1, 0);
+				controls.update();
+
+				// Lights
+				scene.add(mainLight);
+				for(var i = 0; i < baseLights.length; i++) {
+					scene.add(baseLights[i]);
+					scene.add(lightsMesh[i]);
+					scene.add(glowsMesh[i]);
+				}
+
+				// Object
+				scene.add(obj);
+				objMaterials.needsUpdate = true;
+
+				// Base
+				scene.add(base);
+			}
+
+			function update() {
+				requestAnimationFrame(update);
+
+				var frequencyData = analyser.getFrequencyData();
+
+				// Update base lights
+				for(var i = 0; i < baseLightsNumber; i++) {
+					baseLightsAngles[0][i] += 0.002;
+					baseLightsAngles[1][i] += 0.05;
+
+					// Mean value between 1st and 2nd, 3rd and 4th, ... frequency data values. 
+					var mean_fd = mean(frequencyData[2 * i], frequencyData[2 * i + 1]);
+
+					updateLightIntensity(i, mean_fd);
+					updateLightScale(i, mean_fd);
+					updateLightPosition(i);
+				}
+
+				stats.update();
+				updateUniforms();
+
+				render();
+			}
+
+			function render() {
+				renderer.render(scene, camera);
+			}
+
+			function getWidth() {
+				var sidebarContainer = document.getElementById("sidebar-container");
+				return window.innerWidth - $(sidebarContainer).width();
+			}
+
+			function getHeight() {
+				var navbarHeader = document.getElementsByClassName("navbar-header");
+				return window.innerHeight - $(navbarHeader).height();
+			}
+
+			function resizeCanvas() {
+				var width = getWidth();
+				var height = getHeight();
+
+				renderer.setSize(width, height);
+				camera.aspect = (width / height);
+
+				camera.updateProjectionMatrix();
+			}
+
+			function loadTexture(file) {
+				var texture = new THREE.TextureLoader().load(file, function (texture) {
+					texture.minFilter = THREE.LinearMipMapLinearFilter;
+					texture.anisotropy = renderer.getMaxAnisotropy();
+					texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+					texture.offset.set(0, 0);
+					texture.needsUpdate = true;
+				});
+
+				return texture;
+			}
+
+			function updateLightIntensity(i, mean_fd) {
+				var intensityFactor = mean_fd / 255; // From 0 to 1
+
+				baseLights[i].intensity = 0.25 + 3 * intensityFactor / 4; // From 0.25 to 1
+
+				for(var j = 0; j < objUniforms.length; j++) {
+					objUniforms[j].baseclights.value[i] = new THREE.Vector3(baseLights[i].color.r * baseLights[i].intensity, baseLights[i].color.g * baseLights[i].intensity, baseLights[i].color.b * baseLights[i].intensity);
+				}
+			}
+
+			function updateLightScale(i, mean_fd) {
+				var scaleFactor = 2 * (mean_fd / 255); // From 0 to 2
+
+				lightsMesh[i].scale.set(1 + scaleFactor, 1 + scaleFactor, 1 + scaleFactor);
+				glowsMesh[i].scale.set(2 + scaleFactor, 2 + scaleFactor, 2 + scaleFactor);
+			}
+
+			function updateLightPosition(i) {
+				baseLights[i].position.x = Math.sin(baseLightsAngles[0][i]) * r;
+				baseLights[i].position.y = h + Math.sin(baseLightsAngles[1][i]) * h / 2;
+				baseLights[i].position.z = Math.cos(baseLightsAngles[0][i]) * r;
+
+				for(var j = 0; j < objUniforms.length; j++) {
+					objUniforms[j].baseLightPositions.value[i] = baseLights[i].position;
+				}
+				
+				lightsMesh[i].position.copy(baseLights[i].position);
+				glowsMesh[i].position.copy(baseLights[i].position);
+			}
+
+			function updateUniforms() {
+				for(var i = 0; i < objUniforms.length; i++) {
+					objUniforms[i].diffuseMap.value = textures[i][0];
+					objUniforms[i].specularMap.value = textures[i][1];
+					objUniforms[i].roughnessMap.value = textures[i][2];
+					objUniforms[i].normalMap.value = textures[i][3];
+					objUniforms[i].aoMap.value = textures[i][4];
+				}
+			}
+
+			function updateFavourite(container) {
+				var icon = $(container).find("span");
+
+				if(favoutite) {
+					favoutite = false;
+					icon.removeClass('glyphicon-heart').addClass('glyphicon-heart-empty');
+				} else {
+					favoutite = true;
+					icon.removeClass('glyphicon-heart-empty').addClass('glyphicon-heart');
+				}
+			}
+
+			function updateMaterial(value, i) {
+				for(var j = 0; j < materialTextureNames.length; j++) {
+					textures[i][j] = loadTexture(materialPath + value + materialTextureNames[j] + materialFormat);
+				}
+			}
+
+			function updateVolume(container) {
+				var icon = $(container).find("span[class*='glyphicon']");
+				var hiddenText = $(container).find("span[class*='sr-only']");
+
+				if(mute) {
+					mute = false;
+					sound.setVolume(0.5);
+
+					icon.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up');
+					hiddenText.text("Change to mute");
+				} else {
+					mute = true;
+					sound.setVolume(0.0);
+
+					icon.removeClass('glyphicon-volume-up').addClass('glyphicon-volume-off');
+					hiddenText.text("Change to active");
+				}
+			}
+
+			function randomColor() {
+				var colors = [0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xff00ff, 0x00ffff];
+				return colors[Math.floor(Math.random() * colors.length)];
+			}
+
+			function mean(a, b) {
+				return (a + b) / 2;
+			}
+
+
+			// -- START --
+			init();
+			update();
+
+		</script>
+	</body>
+</html>
