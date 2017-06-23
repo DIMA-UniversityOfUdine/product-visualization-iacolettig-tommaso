@@ -1,3 +1,50 @@
+# Night Armchair
+
+![Main view thumbnail](screenshots/screen_00.png)
+
+**Attenzione!** Per un corretto funzionamento è necessario eseguire il file localmente. Ho sfruttato XAMPP per creare un server locale Apache. Consultare anche https://threejs.org/docs/index.html#manual/introduction/How-to-run-thing-locally per una panoramica più completa.
+
+## Descrizione generale
+
+Il mio scopo era quello di creare un configuratore di prodotto che potesse essere reso più accattivante grazie alla presenza di luci in movimento e di diversi colori: ho quindi realizzato una scena caratterizzata da un oggetto principale posto al centro sopra una pedana ed attorno al quale ruotano diverse luci che variano d'intensità in base alla musica di sottofondo. Locali, pub e discoteche sono i principali target del sito: l'atmosfera creata vuole ricordare tali ambienti.
+
+*È possibile trovare la poltrona (il file .obj) all'indirizzo https://www.cgtrader.com/free-3d-models/furniture/chair/kara-armchair-desiree.*
+
+Gli oggetti principali della scena sono:
+- La **poltrona** è l'oggetto centrale ed è composta da tre materiali che possono essere modificati dal cliente mediante i menu a tendina laterali.
+- Le **luci** creano giochi di colore sulla poltrona e variano d'intensità in base alla musica di sottofondo. I colori vengono scelti casualmente dal gruppo di quelli definiti.
+- La **base** è un cilindro sul quale poggia la poltrona e permette di osservare il riflesso delle luci.
+- La **musica**
+- Lo **sfondo**
+
+**- DA FINIRE -**
+
+I file utilizzati sono i seguenti:
+- **index.html**: organizza la scena, le animazioni e l'interazione con l'utente.
+- **lib** (librerie esterne)
+  - **three.min.js**
+  - **stats.min.js**: statistiche in tempo reale.
+  - **OrbitControls.js**: navigazione nella scena.
+  - **dat.gui.min.js**: interazione con l'utente.
+- **textures**: heightmap di diverse risoluzioni.
+
+## Risultati
+
+![Main view](screenshots/screen_01.png)
+
+AAA
+
+## Procedimento
+
+I passi che ho seguito per creare la scena sono i seguenti:
+- AAA
+- AAA
+- AAA
+
+AAA
+
+-----------------------------------------------------------------------------------------------------------------
+
 # ProductVisualization
 
 ![Image from Ford Configurator, developed in three.js](images/ford-configurator.jpg)
