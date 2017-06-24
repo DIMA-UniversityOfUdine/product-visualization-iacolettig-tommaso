@@ -12,21 +12,25 @@ Il mio scopo era quello di creare un configuratore di prodotto che potesse esser
 
 Gli oggetti principali della scena sono:
 - La **poltrona** è l'oggetto centrale ed è composta da tre materiali che possono essere modificati dal cliente mediante i menu a tendina laterali.
-- Le **luci** creano giochi di colore sulla poltrona e variano d'intensità in base alla musica di sottofondo. I colori vengono scelti casualmente dal gruppo di quelli definiti.
+- Le **luci** creano giochi di colore sulla poltrona e variano d'intensità in base alla musica di sottofondo.
 - La **base** è un cilindro sul quale poggia la poltrona e permette di osservare il riflesso delle luci.
-- La **musica**
-- Lo **sfondo**
-
-**- DA FINIRE -**
+- La **musica** consente di variare l'intensità luminosa in base ai dati relativi alle frequenze (ogni luce è associata ad un intervallo di frequenze). 
+- Lo **sfondo** rappresenta un ambiente notturno, il quale si adatta meglio all'atmosfera che si vuole evocare.
 
 I file utilizzati sono i seguenti:
 - **index.html**: organizza la scena, le animazioni e l'interazione con l'utente.
+- **models -> armchair.obj**: modello principale della scena (https://www.cgtrader.com/free-3d-models/furniture/chair/kara-armchair-desiree).
+- **textures**:
+  - **cubemap**: immagine di sfondo (http://www.humus.name/index.php?page=Cubemap&item=SwedishRoyalCastle).
+  - **materials**: tutte le textures per creare i vari materiali per la poltrona (https://share.allegorithmic.com/libraries?by_category_type_id=4).
+- **sounds -> lipstickKiss.mp3**: musica di sottofondo (https://www.jamendo.com/track/1436631/lipstick-kiss).
 - **lib** (librerie esterne)
   - **three.min.js**
   - **stats.min.js**: statistiche in tempo reale.
   - **OrbitControls.js**: navigazione nella scena.
   - **dat.gui.min.js**: interazione con l'utente.
-- **textures**: heightmap di diverse risoluzioni.
+  - **OBJLoader.js**: caricamento del modello.
+- **bootstrap**: framework per design responsive (http://getbootstrap.com/)
 
 ## Risultati
 
@@ -40,6 +44,9 @@ I passi che ho seguito per creare la scena sono i seguenti:
 - AAA
 - AAA
 - AAA
+
+I colori vengono scelti casualmente dal gruppo di quelli definiti.
+Il brano scelto ha un ritmo ben definito, permettendo quindi di ossevare facilmente i beat principali.
 
 AAA
 
