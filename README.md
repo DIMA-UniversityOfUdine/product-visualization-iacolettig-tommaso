@@ -8,8 +8,6 @@
 
 Il mio scopo era quello di creare un configuratore di prodotto che potesse essere reso più accattivante grazie alla presenza di luci in movimento e di diversi colori: ho quindi realizzato una scena caratterizzata da un oggetto principale posto al centro sopra una pedana ed attorno al quale ruotano diverse luci che variano d'intensità in base alla musica di sottofondo. Locali, pub e discoteche sono i principali target del sito: l'atmosfera creata vuole ricordare tali ambienti.
 
-*È possibile trovare la poltrona (il file .obj) all'indirizzo https://www.cgtrader.com/free-3d-models/furniture/chair/kara-armchair-desiree.*
-
 Gli oggetti principali della scena sono:
 - La **poltrona** è l'oggetto centrale ed è composta da tre materiali che possono essere modificati dal cliente mediante i menu a tendina laterali.
 - Le **luci** creano giochi di colore sulla poltrona e variano d'intensità in base alla musica di sottofondo.
@@ -52,14 +50,27 @@ La possibilità di scegliere tra molti materiali consente di osservare come essi
 ## Procedimento
 
 I passi che ho seguito per creare la scena sono i seguenti:
-- AAA
-- AAA
-- AAA
+- Ricerca e scelta del modello
+- Definizione degli shader
+- Costruzione del layout
+- Inserimento della base e delle luci
+- Animazione delle luci
+- Inserimento della musica
+- Aggiunta di tutti i materiali
 
-I colori vengono scelti casualmente dal gruppo di quelli definiti.
-Il brano scelto ha un ritmo ben definito, permettendo quindi di ossevare facilmente i beat principali.
+Non ho preso ispirazione da altre fonti per realizzare la scena, semplicemente volevo che il modello potesse essere illuminato da luci differenti per poter creare qualche effetto interessante. Partendo da questa idea, il resto "è venuto da se".
 
-AAA
+Per quanto riguarda la scelta del modello, l'intenzione iniziale era quella di inserire delle scarpe o uno strumento musicale, ovvero degli oggetti che vengono usati da persone che vanno in un locale (ad esempio una ragazza che va a ballare in discoteca o una band che suona in un pub). Purtroppo, però, i modelli che ho trovato erano troppo semplici, troppo complicati o formati da un gruppo unico e quindi di difficile gestione.
+Per questo motivo ho deciso di spostare il focus sul proprietario del locale e di scegliere un pezzo d'arredamento: il modello utilizzato rispecchia i requisiti del progetto ed è formato da 4 gruppi (cuscini, rivestimento e due supporti), permettendomi di focalizzarmi sulla scelta di tre materiali differenti per le parti elencate.
+
+Gli shader del modello fanno riferimento a quelli visti a lezione. Ho creato solamente una funzione per gestire più facilmente la presenza di molte luci.
+Gli sahder che fanno riferimento al bagliore sono stati adattati partendo da un esempio di Stemkoski (http://stemkoski.github.io/Three.js/Shader-Glow.html).
+
+I colori delle luci vengono scelti casualmente da un gruppo definito. L'animazione si basa essenzialmente sulle funzioni seno e coseno, facendo risultare il movimento molto fluido.
+
+Il brano utilizzato ha un ritmo ben definito, permettendo quindi di ossevare facilmente i beat principali.
+
+Per quanto riguarda i materiali e le rispettive texture, queste ultime sono state ottenute grazie al software Substance Player (https://www.allegorithmic.com/products/substance-player).
 
 -----------------------------------------------------------------------------------------------------------------
 
