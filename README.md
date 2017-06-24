@@ -76,7 +76,7 @@ Per quanto riguarda i materiali e le rispettive texture, queste ultime sono stat
 
 # ProductVisualization
 
-![Image from Ford Configurator, developed in three.js](images/ford-configurator.jpg)
+![Image from Ford Configurator, developed in three.js](screenshots/ford-configurator.jpg)
 
 READ CAREFULLY this document BEFORE you start!
 
