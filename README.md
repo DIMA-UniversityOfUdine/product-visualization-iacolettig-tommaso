@@ -36,7 +36,18 @@ I file utilizzati sono i seguenti:
 
 ![Main view](screenshots/screen_01.png)
 
-AAA
+La pagina creata è formata da tre sezioni principali:
+- La barra di navigazione
+- La sidebar per la modifica del materiali
+- L'area di visualizzazione dell'oggetto
+
+La dimensione di ogni sezione è proporzionale all'importanza che assume nella pagina (ovviamente è centrale il ruolo del visualizzatore di prodotto). Le proporzioni vengono mantenute anche in seguito al ridimensionamento e, grazie al design responsive, l'interfaccia cerca di adattarsi al meglio.
+
+La presenza delle luci a cerchio rende più accattivante la scena, specialmente per i giochi di colori che si creano sulla poltrona.
+
+Anche la musica contribuisce a creare l'atmosfera ed il fatto che le luci reagiscano ad essa permette di integrarla al meglio nella scena.
+
+La possibilità di scegliere tra molti materiali consente di osservare come essi reagiscano in modo differente alle luci.
 
 ## Procedimento
 
