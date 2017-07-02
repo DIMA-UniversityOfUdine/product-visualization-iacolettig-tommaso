@@ -71,6 +71,21 @@ canvas {
   color: #fff;
 }
 
+#refresh-container {
+  position: absolute;
+  top: 50px;
+  right: 15px;
+  font-size: 25px;
+  color: #bbb;
+
+  -webkit-transition: color 500ms; /* Safari */
+  transition: color 500ms;
+}
+
+#refresh-container:hover {
+  color: #fff;
+}
+
 
 .margin-bottom-25 {
   margin-bottom: 25px;
