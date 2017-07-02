@@ -45,3 +45,10 @@
 - Ricerca e selezione dei materiali (https://share.allegorithmic.com/libraries?by_category_type_id=4).
 - Creazione delle texture mediante Substance Player.
 - Suddivisione delle texture in categorie.
+
+## 2 luglio 2017
+
+- Modifica della ripetizione delle texture.
+- Modifica della cubemap.
+- Aggiunta del bottone "Refresh" per le luci.
+- Definizione di singoli materiali per i due supporti della poltrona.
