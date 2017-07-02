@@ -19,7 +19,7 @@ I file utilizzati sono i seguenti:
 - **index.html**: organizza la scena, le animazioni e l'interazione con l'utente.
 - **models -> armchair.obj**: modello principale della scena (https://www.cgtrader.com/free-3d-models/furniture/chair/kara-armchair-desiree).
 - **textures**:
-  - **cubemap**: immagine di sfondo (http://www.humus.name/index.php?page=Cubemap&item=SwedishRoyalCastle).
+  - **cubemap**: immagine di sfondo (http://www.humus.name/index.php?page=Cubemap&item=Yokohama3).
   - **materials**: tutte le textures per creare i vari materiali per la poltrona (https://share.allegorithmic.com/libraries?by_category_type_id=4).
 - **sounds -> lipstickKiss.mp3**: musica di sottofondo (https://www.jamendo.com/track/1436631/lipstick-kiss).
 - **lib** (librerie esterne)
